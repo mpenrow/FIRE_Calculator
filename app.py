@@ -8,7 +8,7 @@ def calculate(income, expenses, savings):
 
 	if isinstance(income, int) == False or isinstance(expenses, int) == False or isinstance(savings, int) == False:
 		results['text'] = "Oops! Please enter integer values."
-		
+
 
 	#format input values for calculations
 	yearly_income = income*12
@@ -37,7 +37,8 @@ def calculate(income, expenses, savings):
 			results['text'] = "You can't retire. Lower your expense ratio."
 			return 1
 
-	results['text'] = "You can retire in " + str(years) + " years. You will have $" + str(round(savings, 2)) + " in savings.\n\nThis calculation assumes a 7 percent annual return\nand a dividend income rate of 4 percent."
+	savings_rounded = round(savings, 2)
+	results['text'] = "You can retire in " + str(years) + " years. You will have $" + f'{savings_rounded:,}' + " in savings.\n\nThis calculation assumes a 7 percent annual return\nand a dividend income rate of 4 percent."
 
 
 #initialize and format GUI
@@ -79,7 +80,7 @@ savings_entry.place(relx=1, relwidth=0.65, relheight=1, anchor="ne")
 calculate_frame = tk.Frame(root)
 calculate_frame.place(relwidth = 0.3, relheight=0.1, relx=0.5, rely=0.55, anchor="n")
 
-calculate_button = tk.Button(calculate_frame, text="Calculate Retirement Date", 
+calculate_button = tk.Button(calculate_frame, text="Calculate Retirement Date",
 	command= lambda: calculate(int(income_entry.get()), int(expenses_entry.get()), int(savings_entry.get())))
 calculate_button.place(relwidth=1, relheight=1)
 
